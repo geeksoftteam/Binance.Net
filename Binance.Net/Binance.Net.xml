@@ -322,6 +322,11 @@
             Leveraged account type
             </summary>
         </member>
+        <member name="F:Binance.Net.Enums.AccountType.TRD_GRP_002">
+            <summary>
+            See https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#enum-definitions
+            </summary>
+        </member>
         <member name="T:Binance.Net.Enums.AccountUpdateReason">
             <summary>
             Account update reason
@@ -1893,9 +1898,9 @@
             Universal transfer type
             </summary>
         </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.MainToC2C">
+        <member name="F:Binance.Net.Enums.UniversalTransferType.MainToFunding">
             <summary>
-            Main (spot) to C2C
+            Main (spot) to Funding
             </summary>
         </member>
         <member name="F:Binance.Net.Enums.UniversalTransferType.MainToUsdFutures">
@@ -1918,24 +1923,19 @@
             Main (spot) to Mining
             </summary>
         </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.C2CToMain">
+        <member name="F:Binance.Net.Enums.UniversalTransferType.FundingToMain">
             <summary>
-            C2C to Main (spot)
+            Funding to Main (spot)
             </summary>
         </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.C2CToUsdFutures">
+        <member name="F:Binance.Net.Enums.UniversalTransferType.FundingToUsdFutures">
             <summary>
-            C2C to Usd futures
+            Funding to Usd futures
             </summary>
         </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.C2CToMining">
+        <member name="F:Binance.Net.Enums.UniversalTransferType.FundingToMargin">
             <summary>
-            C2C to mining
-            </summary>
-        </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.C2CToMargin">
-            <summary>
-            C2C to margin
+            Funding to margin
             </summary>
         </member>
         <member name="F:Binance.Net.Enums.UniversalTransferType.UsdFuturesToMain">
@@ -1943,9 +1943,9 @@
             Usd futures to Main (spot)
             </summary>
         </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.UsdFuturesToC2C">
+        <member name="F:Binance.Net.Enums.UniversalTransferType.UsdFuturesToFunding">
             <summary>
-            Usd futures to C2C
+            Usd futures to Funding
             </summary>
         </member>
         <member name="F:Binance.Net.Enums.UniversalTransferType.UsdFuturesToMargin">
@@ -1983,9 +1983,9 @@
             Margin to Mining
             </summary>
         </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.MarginToC2C">
+        <member name="F:Binance.Net.Enums.UniversalTransferType.MarginToFunding">
             <summary>
-            Margin to C2C
+            Margin to Funding
             </summary>
         </member>
         <member name="F:Binance.Net.Enums.UniversalTransferType.IsolatedMarginToMargin">
@@ -1998,6 +1998,11 @@
             Margin to isolated margin
             </summary>
         </member>
+        <member name="F:Binance.Net.Enums.UniversalTransferType.IsolatedMarginToIsolatedMargin">
+            <summary>
+            Isolated margin to Isolated margin
+            </summary>
+        </member>
         <member name="F:Binance.Net.Enums.UniversalTransferType.MiningToMain">
             <summary>
             Mining to Main (spot)
@@ -2008,24 +2013,19 @@
             Mining to Usd futures
             </summary>
         </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.MiningToC2C">
-            <summary>
-            Mining to C2C
-            </summary>
-        </member>
         <member name="F:Binance.Net.Enums.UniversalTransferType.MiningToMargin">
             <summary>
             Mining to Margin
             </summary>
         </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.MainToPay">
+        <member name="F:Binance.Net.Enums.UniversalTransferType.FundingToCoinFutures">
             <summary>
-            Main to pay
+            Funding to Coin futures
             </summary>
         </member>
-        <member name="F:Binance.Net.Enums.UniversalTransferType.PayToMain">
+        <member name="F:Binance.Net.Enums.UniversalTransferType.CoinFuturesToFunding">
             <summary>
-            Pay to main
+            Coin futures to Funding
             </summary>
         </member>
         <member name="T:Binance.Net.Enums.WithdrawalStatus">
@@ -2538,6 +2538,11 @@
         <member name="P:Binance.Net.Interfaces.IBinanceClient.BSwap">
             <summary>
             Liquidity swap endpoints
+            </summary>
+        </member>
+        <member name="P:Binance.Net.Interfaces.IBinanceClient.Fiat">
+            <summary>
+            Fiat endpoints
             </summary>
         </member>
         <member name="M:Binance.Net.Interfaces.IBinanceClient.SetApiCredentials(System.String,System.String)">
@@ -3913,14 +3918,13 @@
             <param name="ct">Cancellation token</param>
             <returns>The specific order</returns>
         </member>
-        <member name="M:Binance.Net.Interfaces.SubClients.Futures.IBinanceClientFuturesOrders.CancelOrderAsync(System.String,System.Nullable{System.Int64},System.String,System.String,System.Nullable{System.Int64},System.Threading.CancellationToken)">
+        <member name="M:Binance.Net.Interfaces.SubClients.Futures.IBinanceClientFuturesOrders.CancelOrderAsync(System.String,System.Nullable{System.Int64},System.String,System.Nullable{System.Int64},System.Threading.CancellationToken)">
             <summary>
             Cancels a pending order
             </summary>
             <param name="symbol">The symbol the order is for</param>
             <param name="orderId">The order id of the order</param>
             <param name="origClientOrderId">The client order id of the order</param>
-            <param name="newClientOrderId">Unique identifier for this cancel</param>
             <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
             <param name="ct">Cancellation token</param>
             <returns>Id's for canceled order</returns>
@@ -20337,14 +20341,13 @@
             <param name="ct">Cancellation token</param>
             <returns>The specific order</returns>
         </member>
-        <member name="M:Binance.Net.SubClients.Futures.BinanceClientFuturesOrder.CancelOrderAsync(System.String,System.Nullable{System.Int64},System.String,System.String,System.Nullable{System.Int64},System.Threading.CancellationToken)">
+        <member name="M:Binance.Net.SubClients.Futures.BinanceClientFuturesOrder.CancelOrderAsync(System.String,System.Nullable{System.Int64},System.String,System.Nullable{System.Int64},System.Threading.CancellationToken)">
             <summary>
             Cancels a pending order
             </summary>
             <param name="symbol">The symbol the order is for</param>
             <param name="orderId">The order id of the order</param>
             <param name="origClientOrderId">The client order id of the order</param>
-            <param name="newClientOrderId">Unique identifier for this cancel</param>
             <param name="receiveWindow">The receive window for which this request is active. When the request takes longer than this to complete the server will reject the request</param>
             <param name="ct">Cancellation token</param>
             <returns>Id's for canceled order</returns>
